@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Rest from "../../utils/rest";
 
 const baseURL = "https://mymoney-costawebs.firebaseio.com/";
@@ -15,6 +15,11 @@ const Meses = () => {
       </div>
     );
   }
+
+  if (data.code === 401) {
+    return <Redirect to="/login" />;
+  }
+
   if (Object.keys(data.data).length > 0) {
     return (
       <table className="table table-hover table-bordered table-striped">
